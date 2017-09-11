@@ -45,7 +45,7 @@
 		<disruptor.version>3.3.4</disruptor.version>
 		<!-- -->
 		<druid.version>1.1.2</druid.version>
-		<dubbo.version>2.5.3</dubbo.version>
+		<dubbo.version>2.5.4</dubbo.version>
 		<fastjson.version>1.2.36</fastjson.version>
 		<motan.version>0.3.1</motan.version>
 		<!-- -->
@@ -64,8 +64,8 @@
 		<pinyin4j.version>2.5.1</pinyin4j.version>
 		<activemq.version>5.13.3</activemq.version>
 		<jsqlparser.version>0.9.5</jsqlparser.version>
-		<springfox.version>2.6.1</springfox.version>
-		<swagger.version>1.5.13</swagger.version>
+		<springfox.version>2.7.0</springfox.version>
+		<swagger.version>1.5.16</swagger.version>
 		<thumbnailator.version>0.4.8</thumbnailator.version>
 	</properties>
 
@@ -354,10 +354,10 @@
 							<version>2.2</version>
 							<executions>
 								<execution>
-									<id>run-war-only</id>
+									<id>run</id>
 									<phase>pre-integration-test</phase>
 									<goals>
-										<goal>run-war-only</goal>
+										<goal>run</goal>
 									</goals>
 								</execution>
 							</executions>
