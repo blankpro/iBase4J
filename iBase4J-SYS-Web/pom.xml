@@ -2,16 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>iBase4J-SYS-Web</artifactId>
-	<name>iBase4J-SYS-Web</name>
-	<packaging>war</packaging>
-	<url>http://maven.apache.org</url>
-
 	<parent>
 		<groupId>org.ibase4j</groupId>
 		<artifactId>iBase4J</artifactId>
 		<version>1.1.0</version>
 	</parent>
+	<artifactId>iBase4J-SYS-Web</artifactId>
+	<name>iBase4J-SYS-Web</name>
+	<packaging>war</packaging>
 
 	<properties>
 		<server.port>8088</server.port>
@@ -55,6 +53,11 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
 			<version>${spring-data-redis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
 		</dependency>
 		<!-- 缓存 -->
 		<dependency>
@@ -123,11 +126,11 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${springfox.version}</version>
 		</dependency>
-		<!--  -->
+		<!-- -->
 		<dependency>
-		    <groupId>cz.mallat.uasparser</groupId>
-		    <artifactId>uasparser</artifactId>
-		    <version>0.6.2</version>
+			<groupId>cz.mallat.uasparser</groupId>
+			<artifactId>uasparser</artifactId>
+			<version>0.6.2</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -40,7 +40,7 @@ public class CacheUtil {
 				}
 			}
 			int expires = 1000 * 60 * 3;
-			String currentValue = (String) getCache().get(key);
+			String currentValue = String.valueOf(getCache().get(key));
 			if (currentValue != null && Long.parseLong(currentValue) < System.currentTimeMillis() - expires) {
 				unlock(key);
 				return getLock(key);
@@ -53,6 +53,6 @@ public class CacheUtil {
 	}
 
 	public static void unlock(String key) {
-		getCache().del(key);
+		getCache().unlock(key);
 	}
 }

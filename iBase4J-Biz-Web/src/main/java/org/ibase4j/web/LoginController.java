@@ -69,8 +69,8 @@ public class LoginController extends AbstractController<ISysProvider> {
 			params.put("countSql", 0);
 			params.put("enable", 1);
 			params.put("loginKey", user.getAccount()); // 登录帐号/手机号/邮箱
-			Parameter parameter = new Parameter(getService(), "query").setMap(params);
-			Page<?> pageInfo = provider.execute(parameter).getPage();
+			Parameter parameter = new Parameter(getService(), "query", params);
+			Page<?> pageInfo = provider.execute(parameter).getResultPage();
 			if (pageInfo.getTotal() == 1) {
 				SysUser sysUser = (SysUser) pageInfo.getRecords().get(0);
 				if (user.getPassword().equals(SecurityUtil.encryptPassword(user.getPassword()))) {
@@ -82,9 +82,7 @@ public class LoginController extends AbstractController<ISysProvider> {
 
 		if (success) {
 			request.setAttribute("msg", "[" + user.getAccount() + "]登录成功.");
-			String token = SecurityUtil.encryptPassword(user.getAccount() + DateUtil.getDateTime("yyyyMMddHHmmss"));
-			TokenUtil.setTokenInfo(token, user.getAccount());
-			modelMap.put("token", token);
+			TokenUtil.setTokenInfo(uuid, user.getAccount());
 			return setSuccessModelMap(modelMap);
 		}
 		request.setAttribute("msg", "[" + user.getAccount() + "]登录失败.");
@@ -95,9 +93,9 @@ public class LoginController extends AbstractController<ISysProvider> {
 	@ApiOperation(value = "用户登出")
 	@PostMapping("app/logout")
 	public Object logout(HttpServletRequest request, ModelMap modelMap) {
-		String token = request.getHeader("token");
-		if (StringUtils.isNotBlank(token)) {
-			TokenUtil.delToken(token);
+		String uuid = request.getHeader("UUID");
+		if (StringUtils.isNotBlank(uuid)) {
+			TokenUtil.delToken(uuid);
 		}
 		return setSuccessModelMap(modelMap);
 	}
@@ -109,7 +107,7 @@ public class LoginController extends AbstractController<ISysProvider> {
 		Assert.notNull(sysUser.getAccount(), "ACCOUNT");
 		Assert.notNull(sysUser.getPassword(), "PASSWORD");
 		sysUser.setPassword(SecurityUtil.encryptPassword(sysUser.getPassword()));
-		provider.execute(new Parameter("sysUserService", "update").setModel(sysUser));
+		provider.execute(new Parameter("sysUserService", "update", sysUser));
 		try {
 			String token = SecurityUtil.encryptPassword(sysUser.getAccount() + DateUtil.getDateTime("yyyyMMddHHmmss"));
 			TokenUtil.setTokenInfo(token, sysUser.getAccount());
