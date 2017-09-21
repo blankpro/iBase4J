@@ -1,5 +1,6 @@
 ## iBase4J项目简介
 
+- qgchou 
 - iBase4J是Java语言的分布式系统架构。 使用Spring整合开源框架。
 - 使用Maven对项目进行模块化管理，提高项目的易开发性、扩展性。
 - 系统包括5个子系统：公共功能、系统管理Service、系统管理Web、业务Service、业务Web。
